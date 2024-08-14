@@ -4,7 +4,11 @@ const port = 5000
 const userRouter = require('./routes/user.route')
 const mongoose = require("mongoose")
 require('dotenv').config()
+const cors = require("cors")
+
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
+app.use(express.json())
 
 let URI = process.env.MONGO_DB_URI
 mongoose.connect(URI)

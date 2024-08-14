@@ -28,6 +28,7 @@ let mailHTML = `
         }
         .header h1 {
             margin: 0;
+            color: #007bff;
         }
         .content {
             padding: 20px;
