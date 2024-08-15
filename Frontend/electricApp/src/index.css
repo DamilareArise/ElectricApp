@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-links>a{
+  padding: 10px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  /* color: red; */
+}
+.loginimg{
+  transform: scaleX(-1)
+}
