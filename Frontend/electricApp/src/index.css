@@ -12,3 +12,9 @@
 .loginimg{
   transform: scaleX(-1)
 }
+
+.sec1>div{
+  display: flex;
+  flex-direction: column;
+  gap: 14.84px;
+}
