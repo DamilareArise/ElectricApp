@@ -3,10 +3,11 @@ import Nav from "../components/nav";
 import signup from "../assets/signup.jpg";
 import message from "../assets/message.svg";
 import passwordd from "../assets/password.svg";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +16,7 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [generalError, setGeneralError] = useState('');
-
+  let navigate = useNavigate()
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -83,13 +84,14 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch('', {
+      const response = await fetch('http://localhost:5000/account/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           firstName,
+          lastName,
           phoneNumber,
           email,
           password,
@@ -99,6 +101,12 @@ const SignUp = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Signup successful:', data);
+        // Redirect to login page
+        if (data.status){
+          navigate('/login')
+        }else{
+          setGeneralError('Signup failed. Please try again.');
+        }
       } else {
         setGeneralError('Signup failed. Please try again.');
       }
@@ -127,6 +135,17 @@ const SignUp = () => {
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
+
+            <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+
 
             <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
               <input

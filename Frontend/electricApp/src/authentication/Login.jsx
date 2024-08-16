@@ -3,14 +3,14 @@ import Nav from "../components/nav";
 import loginImg from "../assets/loginImg.jpg";
 import message from "../assets/message.svg";
 import passwordd from "../assets/password.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
+  let navigate = useNavigate()
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -72,14 +72,31 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch(``, {
-        method: 'GET',
+      const response = await fetch(`http://localhost:5000/account/signin`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Login successful:', data);
-        //na this place you route go another page
+        
+        if (data.status){
+          console.log('Login successful:', data);
+          //na this place you route go another page
+          localStorage.token = data.token
+          navigate('/dashboard')
+        }
+        else{
+          console.log('Login failed:', data);
+          }
+        setPasswordError('Login failed. Please check your credentials.');
+        
       } else {
         setPasswordError('Login failed. Please check your credentials.');
       }
