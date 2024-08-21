@@ -2,10 +2,10 @@
 
 const Section3 = () => {
   return (
-    <div className="px-[60px] flex flex-col gap-[17px]">
-        <p className="text-[20px] font-[600] leading-[23.42px]">
-            The Benefits of Paying Electricity Bills Online<br/>
-            In today’s digital age, paying electricity bills online has become increasingly popular. Here are some key benefits of <br/>making the switch to online payments:
+    <div className="px-[24px] lg:px-[60px] flex flex-col gap-[17px] mt-[32px]">
+        <p className="text-[16px] lg:text-[20px] font-[600] leading-[23.42px] md:w-[75%]">
+            The Benefits of Paying Electricity Bills Online
+            In today’s digital age, paying electricity bills online has become increasingly popular. Here are some key benefits of making the switch to online payments:
         </p>
 
         <div className="sentences pb-[30px]">

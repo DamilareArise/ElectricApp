@@ -1,5 +1,6 @@
 // import React from 'react'
 
+import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Nav from "../components/nav"
 import Section1 from "../components/section1"
@@ -16,6 +17,7 @@ const Landing = () => {
         <Section2/>
         <Section3/>
         <Section4/>
+        <Footer/>
     </div>
   )
 }
