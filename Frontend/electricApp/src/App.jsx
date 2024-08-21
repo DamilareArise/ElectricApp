@@ -17,8 +17,8 @@ function App() {
       
       <Routes>
         <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
-        <Route path='/sss' element={<Landing/>}/>
-        <Route path="/" element={<Login/>}/>
+        <Route path='/' element={<Landing/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>} />
       </Routes>
   

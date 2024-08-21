@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const Header = () => {
   return (
     <div className="bg-[#00000099] bg-[url('./assets/header.png')] bg-cover bg-top">
-      <div className="  bg-[#00000099]  h-[90vh] flex flex-col justify-end items-center text-[#EDA145]  gap-[31px]">
+      <div className="  bg-[#00000099]  h-[100vh] flex flex-col justify-end items-center text-[#EDA145]  gap-[31px]">
         <p className="text-[36px] md:text-[42px] lg:text-[58px]  text-center font-[600] md:font-[700] /text-[#000000] /text-[52.08px] ">
             Pay 
             <span className="text-animation"> Electricity bill </span> 

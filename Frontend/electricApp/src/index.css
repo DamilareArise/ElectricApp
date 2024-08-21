@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.nav-links>a{
+.nav-link>.ink{
   padding: 10px;
   font-weight: 400;
   font-size: 20px;
@@ -93,7 +93,7 @@ a, link, Link{
 }
 
 @media screen and (max-width:790px) {
-  .nav-links>a{
+  .nav-link>.ink{
     padding: 10px;
     font-weight: 400;
     font-size: 16px;
@@ -153,11 +153,17 @@ a, link, Link{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    /* padding: 1.5rem 1.5rem; */
+    
+    background-color: #EDA145;
+    padding: 24px 24px;
     z-index: 20;
     text-align: center;
     box-shadow: 2px 5px 5px rgb(170, 164, 164);
   }
+
+  /* .nav-links.ink{
+    color: #EDA145;
+  } */
 }
 
 @media screen and(min-width:1280px) {

@@ -1,4 +1,5 @@
 // import React from 'react'
+import logo from './../assets/logo.svg'
 
 import { Link } from "react-router-dom"
 
@@ -6,7 +7,13 @@ const Footer = () => {
   return (
     <div className="bg-[#F3F1F1]  flex-col md:flex-row py-[98px] lg:py-[142px] flex  items-start md:items-center gap-[32px] md:gap-[79px] px-[24px] lg:px-[71px]">
         <div>
-            <p>LOGO</p>
+        <img
+          src={logo}
+          width={120}
+          height={70}
+          alt=""
+          srcSet=""
+        />
             <p className="font-[400] text-[20px] lg:text-[28px] leading-[33.6px]">©2024 Logo, All Rights Reserved.</p>
         </div>
 
