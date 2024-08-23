@@ -12,7 +12,7 @@ const Dashboard = () => {
   let navigate = useNavigate()
   const  getDashboard = async () => {
     // fetch data from API
-    const response = await fetch(`http://localhost:5000/account/dashboard`, {
+    const response = await fetch(`https://electricapp.onrender.com/account/dashboard`, {
       method: 'GET',
       headers: {
         'authentication': 'Bearer '+token,

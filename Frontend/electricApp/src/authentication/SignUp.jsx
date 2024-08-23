@@ -84,7 +84,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/account/registration', {
+      const response = await fetch('https://electricapp.onrender.com/account/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
