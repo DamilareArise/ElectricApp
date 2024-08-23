@@ -107,12 +107,12 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[url('./assets/loginImg.jpg')] bg-cover bg-center h-[100vh] md:h-fit">
+    <div className="bg-[url('./assets/loginImg.jpg')]  lg:bg-none bg-cover bg-center h-[100vh] lg:h-fit">
       <Nav />
 
-      <div className="flex /bg-[url('./assets/loginImg.jpg')] items-center justify-center lg:justify-between gap-[104px] px-[24px] lg:pl-[57px] lg:pr-[57px] mt-[50px] mb-[58px] pt-[70px]">
+      <div className="flex /bg-[url('./assets/loginImg.jpg')] items-center justify-center lg:justify-between h-full lg:h-fit gap-[104px] px-[24px] lg:pl-[57px] lg:pr-[57px] mt-[50px] mb-[58px] pt-[70px]">
         <img src={loginImg} alt="Login" width={323} height={323} className="w-[40%] loginimg hidden lg:block" />
-        <div className="md:w-[50%] pt-[32px] pb-[32px] bg-[#FFFEFE] shadow-md shadow-[#00000040] px-[26px] rounded-[30px]">
+        <div className="md:w-[70%] lg:w-[50%] pt-[32px] pb-[32px] bg-[#FFFEFE] shadow-md shadow-[#00000040] px-[26px] rounded-[30px] ">
           <form onSubmit={handleSubmit}>
             <p className="pb-[32px] text-center">Login</p>
 

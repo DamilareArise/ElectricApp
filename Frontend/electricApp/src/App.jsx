@@ -9,16 +9,17 @@ import Dashboard from './pages/Dashboard'
 import Login from './authentication/Login';
 
 function App() {
-  let token = localStorage.token
+  // let token = localStorage.token
 
   return (
     <>
      <Router>
       
       <Routes>
-        <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
-        <Route path='/sss' element={<Landing/>}/>
-        <Route path="/" element={<Login/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
+        {/* <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/> */}
+        <Route path='/' element={<Landing/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>} />
       </Routes>
   
