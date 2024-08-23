@@ -42,7 +42,7 @@ const Nav = () => {
               Home
             </Link>
             <Link
-              to="/"
+              to="/dashboard"
               className="ink" onClick={scrollToTop}
             >
               Dashboard
