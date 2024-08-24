@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import Nav from '../components/nav'
 import { Link, useNavigate } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 const Dashboard = () => {
   
@@ -34,7 +34,7 @@ const Dashboard = () => {
   
   return (
     <div className='pt-[90px]'>
-      <Nav/>
+      <Navbar/>
       {/* <h1>Dashboard</h1> */}
 
       <div>

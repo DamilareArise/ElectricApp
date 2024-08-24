@@ -1,9 +1,9 @@
 import  { useState } from 'react';
-import Nav from "../components/nav";
 import signup from "../assets/signup.jpg";
 import message from "../assets/message.svg";
 import passwordd from "../assets/password.svg";
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -118,8 +118,7 @@ const SignUp = () => {
 
   return (
     <div className="bg-[url('./assets/signup.jpg')] lg:bg-none bg-cover bg-center /h-[100vh] lg:h-fit">
-      <Nav />
-
+      <Navbar/>
       <div className="flex items-center justify-center lg:justify-between gap-[104px] px-[24px] lg:pl-[57px] lg:pr-[57px] h-full lg:h-fit mt-[50px] mb-[58px] pt-[107px]">
         <img src={signup} alt="Sign Up" width={323} height={323} className="w-[40%] loginimg  hidden lg:block" />
         <div className="md:w-[70%] lg:w-[50%] pt-[32px] pb-[32px] bg-[#FFFEFE] shadow-md shadow-[#00000040] px-[26px] rounded-[30px]">

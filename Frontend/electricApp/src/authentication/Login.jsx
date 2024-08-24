@@ -1,9 +1,9 @@
 import  { useState} from 'react';
-import Nav from "../components/nav";
 import loginImg from "../assets/loginImg.jpg";
 import message from "../assets/message.svg";
 import passwordd from "../assets/password.svg";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -108,7 +108,7 @@ const Login = () => {
 
   return (
     <div className="bg-[url('./assets/loginImg.jpg')]  lg:bg-none bg-cover bg-center h-[100vh] lg:h-fit">
-      <Nav />
+      <Navbar/>
 
       <div className="flex /bg-[url('./assets/loginImg.jpg')] items-center justify-center lg:justify-between h-full lg:h-fit gap-[104px] px-[24px] lg:pl-[57px] lg:pr-[57px] mt-[50px] mb-[58px] pt-[70px]">
         <img src={loginImg} alt="Login" width={323} height={323} className="w-[40%] loginimg hidden lg:block" />
