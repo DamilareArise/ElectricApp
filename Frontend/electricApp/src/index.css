@@ -91,6 +91,12 @@ a, link, Link{
   font-size: 16px;
   line-height: 19.2px;
 }
+.transac-heading>div{
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33.6px;
+  color: #000000;
+}
 
 @media screen and (max-width:790px) {
   .nav-link>.ink{

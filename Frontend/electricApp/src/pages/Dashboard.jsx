@@ -1,97 +1,80 @@
-import { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import bulb from "./../assets/bulb.svg";
+import transacnull from "./../assets/transacnull.gif";
+import Sidebar from "../components/Sidebar";
 
 const Dashboard = () => {
-  
   useEffect(() => {
-    getDashboard()
-  },[])
+    getDashboard();
+  }, []);
 
-  let token = localStorage.token
-  let navigate = useNavigate()
-  const  getDashboard = async () => {
+  let token = localStorage.token;
+  let navigate = useNavigate();
+  const getDashboard = async () => {
     // fetch data from API
-    const response = await fetch(`https://electricapp.onrender.com/account/dashboard`, {
-      method: 'GET',
-      headers: {
-        'authentication': 'Bearer '+token,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    })
-    if (response.ok){
+    const response = await fetch(
+      `https://electricapp.onrender.com/account/dashboard`,
+      {
+        method: "GET",
+        headers: {
+          authentication: "Bearer " + token,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    if (response.ok) {
       const data = await response.json();
-      if (!data.status){
-        localStorage.removeItem('token')
-        navigate('/login')
-      }else{
+      if (!data.status) {
+        localStorage.removeItem("token");
+        navigate("/dashboard");
+      } else {
         console.log(data.data);
       }
     }
-  }
+  };
   // const notifications = true;
-  
+
   return (
-    <div className='pt-[90px]'>
-      <Navbar/>
+    <div className="pt-[85px]">
+      <Navbar />
       {/* <h1>Dashboard</h1> */}
 
-      <div>
-        <div className='w-[355px] bg-[#012436] h-[95vh] pl-[49px] pt-[105px]'>
-          <div className='flex flex-col gap-[57px]'>
-            <img src="" alt="" width={24} height={24}/>
+      <div className="relative">
+        <Sidebar/>
 
-            <div className='flex flex-col gap-[35px]'>
-              <Link to='' className='font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center'>
-                <img src="" alt="" />
-                <p>Home</p>
-              </Link>
+        <div className="flex ">
+          <div className="w-[20%]"></div>
 
-              <Link to='' className='font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center'>
-                <img src="" alt="" />
-                <p>Dashboard</p>
-              </Link>
-
-              <Link to='' className='font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center'>
-                <img src="" alt="" />
-                <p>Transactions</p>
-              </Link>
-
-              <Link to='' className='font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center'>
-                <img src="" alt="" />
-                <p>Settings</p>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div></div>
-
-          <div>
-            <Link to='' className='flex gap-[57px] px-[23px] py-[40px] max-w-[279px]'>
-              <img src="" alt="" />
-              <p>Pay Electric bill</p>
-            
+          <div className=" mt-[41px] w-[80%]">
+            <Link
+              to="/paybill"
+              className="flex flex-col w-[279px] rounded-[15px] gap-[57px] px-[23px] py-[40px] max-w-[279px] border-[1px] border-[#EDA145] ml-[30px] mb-[41px] pt-[40px] "
+            >
+              <img src={bulb} width={32} height={32} alt="" />
+              <p className="text-[20px] font-[500] leading-[24px]">
+                Pay Electric bill
+              </p>
             </Link>
 
-            <div className='py-[28px] pl-[44px]'>
-              <p>Notifications (0)</p>
+            <div className="py-[28px] pl-[44px] bg-[#F8F8F8] w-full">
+              <p className="text-[28px] font-[500] leading-[33.6px] text-[#898989]">
+                Notifications (0)
+              </p>
             </div>
 
-            <div>
-              <div className='flex flex-col gap-[45px] items-center'>
-                <img src="" alt="" />
+            <div className="flex flex-col gap-[45px] justify-center items-center">
+              <img src={transacnull} width={356} height={342} alt="" />
 
-                <p>No Notifications  yet</p>
-              </div>
+              <p className="text-[24px] font-[400] leading-[28.8px] text-[#898989]">No Notifications yet</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
