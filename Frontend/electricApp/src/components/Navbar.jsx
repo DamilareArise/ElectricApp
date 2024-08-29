@@ -37,7 +37,7 @@ const Navbar = () => {
             <Link to="/dashboard" className="ink" onClick={scrollToTop}>
               Dashboard
             </Link>
-            <Link to="/" className="ink" onClick={scrollToTop}>
+            <Link to="/transactions" className="ink" onClick={scrollToTop}>
               Transactions
             </Link>
             <Link to="" className="ink" onClick={scrollToTop}>
