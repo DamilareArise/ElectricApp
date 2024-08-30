@@ -11,9 +11,8 @@ import Transactions from './pages/Transactions';
 import Paybill from './components/Paybill';
 
 function App() {
-  // let token = localStorage.token
-  localStorage.clear()
-
+  let token = localStorage.token
+  
   return (
     <>
      <Router>
@@ -21,8 +20,8 @@ function App() {
       <Routes>
       <Route path='/paybill' element={<Paybill/>}/>
         <Route path='/transactions' element={<Transactions/>}/>
-        <Route path='/dashboard' element={<Dashboard/>}/>
-        {/* <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/> */}
+        {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
+        <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
         <Route path='/' element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>} />
