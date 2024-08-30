@@ -19,7 +19,7 @@ function App() {
       
       <Routes>
       <Route path='/paybill' element={<Paybill/>}/>
-        <Route path='/transactions' element={<Transactions/>}/>
+        <Route path='/transactions' element={token ? <Transactions/> : <Navigate to={'/login'}/>}/>
         {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
         <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
         <Route path='/' element={<Landing/>}/>
