@@ -82,7 +82,7 @@ const Paybill = () => {
                 <input
                   type="number"
                   placeholder="Meter Number"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={meterNumber}
                   onChange={(e) => setMeterNumber(e.target.value)}
                 />
@@ -92,7 +92,7 @@ const Paybill = () => {
                 <input
                   type="number"
                   placeholder="Amount"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
@@ -106,7 +106,7 @@ const Paybill = () => {
                 <input
                   type="number"
                   placeholder="Account Number"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={meterNumber}
                   onChange={(e) => setMeterNumber(e.target.value)}
                 />
@@ -116,7 +116,7 @@ const Paybill = () => {
                 <input
                   type="number"
                   placeholder="Amount"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
@@ -128,7 +128,7 @@ const Paybill = () => {
             <input
               type="number"
               placeholder="Phone Number"
-              className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+              className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
@@ -140,7 +140,7 @@ const Paybill = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]  "
                 value={email}
                 onChange={handleEmailChange}
               />
@@ -152,7 +152,7 @@ const Paybill = () => {
 
           <button
             type="submit"
-            className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px]"
+            className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
           >
             Proceed
           </button>
@@ -171,7 +171,7 @@ const Paybill = () => {
             <div className="mt-4">
               <button
                 onClick={closeModal}
-                className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px]"
+                className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
               >
                 Pay
               </button>
