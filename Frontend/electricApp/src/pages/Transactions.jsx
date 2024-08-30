@@ -15,7 +15,7 @@ const Transactions = () => {
         <div className="flex ">
           <div className="w-[20%]"></div>
           <div className="pt-[45] mt-[45px] px-[20px] w-[80%]">
-            <div className="bg-[#F8F4F4] px-[20px] border-[1px] border-[#000000]">
+            <div className="bg-[#F8F4F4] px-[20px] border-[1px] border-[#000000] h-[80dvh]">
               <div className="py-[20px] transac-heading border-b-[1px] border-[#DAD9D9] w-full flex items-center text-center">
                 <div className="border-r-[3px] border-[#D9D6D6] w-[5%]">ID</div>
                 <div className="border-r-[3px] border-[#D9D6D6] w-[20%]">
@@ -31,8 +31,8 @@ const Transactions = () => {
               </div>
 
               {transac.length == 0 ? (
-                <div className="mt-[43px] flex flex-col justify-center items-center">
-                    <img src={nulltransac} width={356} height={342} alt="" className="pt-[337px] " />
+                <div className="mt-[43px] flex flex-col justify-center items-center ">
+                    <img src={nulltransac} width={256} height={242} alt="" className="pt-[100px] " />
                     <p className="text-[24px] font-[400] leading-[28.8px] text-[#898989] pb-[33px]">No transaction recorded yet</p>
                 </div>
               ) : (

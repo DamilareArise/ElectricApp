@@ -28,7 +28,7 @@ const Navbar = () => {
         <div
           className={` navMenu ${
             isOpen ? " active " : ""
-          }  lg:flex lg:items-center lg:justify-between basis-[80%]`}
+          }  lg:flex lg:items-center lg:justify-between basis-[70%]`}
         >
           <span className="flex flex-col lg:flex-row gap-[16px] lg:gap-[0px] items-start text-[#170045] nav-link">
             <Link to="/" className="ink">

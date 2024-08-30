@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import bulb from "./../assets/bulb.svg";
@@ -6,6 +6,7 @@ import transacnull from "./../assets/transacnull.gif";
 import Sidebar from "../components/Sidebar";
 
 const Dashboard = () => {
+  const [notifications, setNotification] = useState("")
   useEffect(() => {
     getDashboard();
   }, []);
@@ -65,11 +66,11 @@ const Dashboard = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-[45px] justify-center items-center">
-              <img src={transacnull} width={356} height={342} alt="" />
+            {notifications == '' ? <div className="flex flex-col gap-[45px] justify-center items-center pb-[79px]">
+              <img src={transacnull} width={300} height={180} alt="" />
 
               <p className="text-[24px] font-[400] leading-[28.8px] text-[#898989]">No Notifications yet</p>
-            </div>
+            </div>: <div>something dey here</div>}
           </div>
         </div>
       </div>
