@@ -16,7 +16,7 @@ const Header = () => {
             convenience without stress
         </p>
 
-        <Link to='/' className="py-[22px] px-[49px] font-[400] text-[22px] lg:text-[28px] leading-[33.6px] rounded-[8px] mb-[71px] text-[#012436] bg-[#EDA145]">Buy now</Link>
+        <Link to='/dashboard' className="py-[22px] px-[49px] font-[400] text-[22px] lg:text-[28px] leading-[33.6px] rounded-[8px] mb-[71px] text-[#012436] bg-[#EDA145]">Buy now</Link>
     </div>
     </div>
   )

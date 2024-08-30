@@ -6,10 +6,12 @@ import transacnull from "./../assets/transacnull.gif";
 import Sidebar from "../components/Sidebar";
 
 const Dashboard = () => {
+
+
   useEffect(() => {
     getDashboard();
   }, []);
-
+  
   let token = localStorage.token;
   let navigate = useNavigate();
   const getDashboard = async () => {
@@ -29,7 +31,7 @@ const Dashboard = () => {
       const data = await response.json();
       if (!data.status) {
         localStorage.removeItem("token");
-        navigate("/dashboard");
+        navigate("/login");
       } else {
         console.log(data.data);
       }

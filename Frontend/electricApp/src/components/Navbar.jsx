@@ -45,12 +45,12 @@ const Navbar = () => {
             </Link>
           </span>
 
-          <a
-            href="http://"
+          <Link
+            to="/dashboard"
             className="py-[17.94px] px-[39.96px] bg-[#012436] text-[#EDA145] rounded-[6.52px] md:text-[14px] xl:text-[22.83px] font-[400] leading-[27.4px]"
           >
             Buy Electricity
-          </a>
+          </Link>
         </div>
       </div>
 

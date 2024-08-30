@@ -13,7 +13,7 @@ const Section4 = () => {
             </p>
             <p className="font-[400] text-[20px] lg:text-[28px] leading-[33.6px]">Join the thousands of users using  a fast and reliable top-up service</p>
 
-            <Link to='/' className="text-[#012436] font-[400] text-[20px] lg:text-[28px] bg-[#EDA145] py-[22px] px-[49px] w-fit rounded-[8px]">Start Now</Link>
+            <Link to='/signup' className="text-[#012436] font-[400] text-[20px] lg:text-[28px] bg-[#EDA145] py-[22px] px-[49px] w-fit rounded-[8px]">Start Now</Link>
         </div>
     </div>
   )
