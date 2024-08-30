@@ -132,13 +132,13 @@ const SignUp = () => {
         />
         <div className="md:w-[70%] lg:w-[50%] pt-[32px] pb-[32px] bg-[#FFFEFE] shadow-md shadow-[#00000040] px-[26px] rounded-[30px]">
           <form onSubmit={handleSubmit}>
-            <p className="pb-[32px] text-center">Sign Up</p>
+            <p className="pb-[32px] text-center md:text-[20px] font-[500] text-[16px]">Sign Up</p>
 
             <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
               <input
                 type="text"
                 placeholder="First Name"
-                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -148,7 +148,7 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="Last Name"
-                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -158,7 +158,7 @@ const SignUp = () => {
               <input
                 type="number"
                 placeholder="Phone Number"
-                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
@@ -170,7 +170,7 @@ const SignUp = () => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={email}
                   onChange={handleEmailChange}
                 />
@@ -191,7 +191,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={password}
                   onChange={handlePasswordChange}
                 />
@@ -212,7 +212,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="Confirm password"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full"
+                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
                 />
@@ -226,7 +226,7 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px]"
+              className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
             >
               Sign Up
             </button>
@@ -238,8 +238,8 @@ const SignUp = () => {
             )}
 
             <div className="text-center mt-[32px]">
-              <p>
-                Already a registered member? <Link to="/">Login</Link>
+              <p className="md:text-[20px] font-[400] text-[16px]">
+                Already a registered member? <Link to="/" className="font-[400] text-[16px] md:text-[20px]">Login</Link>
               </p>
             </div>
           </form>
