@@ -5,13 +5,13 @@ import passwordd from "../assets/password.svg";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 
-const Login = () => {
+const Login = ({setToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
-  let navigated = useNavigate();
+  const navigate = useNavigate()
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -90,10 +90,11 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok && data.status) {
-        console.log('Login successful:', data);
-        localStorage.token = data.token;
-        console.log('I am here');
-        navigated('/dashboard');
+        // console.log('Login successful:', data);
+        localStorage.setItem('token', data.token);
+        setToken(data.token);  // Update the token state
+        navigate('/dashboard');
+      
       } else {
         console.log('Login failed:', data);
         setPasswordError('Login failed. Please check your credentials.');
