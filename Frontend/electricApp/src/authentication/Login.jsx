@@ -92,6 +92,7 @@ const Login = () => {
       if (response.ok && data.status) {
         console.log('Login successful:', data);
         localStorage.token = data.token;
+        console.log('I am here');
         navigate('/dashboard');
       } else {
         console.log('Login failed:', data);

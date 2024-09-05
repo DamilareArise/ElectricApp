@@ -13,18 +13,18 @@ import Eproviders from './pages/Eproviders';
 
 function App() {
   let token = localStorage.token
-  console.log(import.meta.env.VITE_TOKEN)
+  // console.log(import.meta.env.VITE_TOKEN)
   return (
     <>
      <Router>
       
       <Routes>
-      <Route path='/paybill' element={<Paybill/>}/>
+      <Route path='/paybill' element={token ? <Paybill/>: <Navigate to={'/login'}/>}/>
         <Route path='/transactions' element={token ? <Transactions/> : <Navigate to={'/login'}/>}/>
         {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
         <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
-        <Route path='/ff' element={<Landing/>}/>
-        <Route path='/' element={<Eproviders/>}/>
+        <Route path='/' element={<Landing/>}/>
+        <Route path='/providers' element={token? <Eproviders/>: <Navigate to={'/login'}/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>} />
       </Routes>
