@@ -53,6 +53,8 @@ const Paybill = () => {
     setIsModalOpen(false);
   };
 
+  
+
   return (
     <div className="pt-[105px] flex justify-center items-center h-[95vh]">
       <Navbar />

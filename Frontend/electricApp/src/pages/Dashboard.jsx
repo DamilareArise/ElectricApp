@@ -54,7 +54,7 @@ const Dashboard = () => {
           <div className=" mt-[41px] w-[80%]">
             <Link
               to="/paybill"
-              className="flex flex-col w-[279px] rounded-[15px] gap-[57px] px-[23px] py-[40px] max-w-[279px] border-[1px] border-[#EDA145] hover:bg-[#EDA145] hover:text-[#FFFFFF] ml-[30px] mb-[41px] pt-[40px] "
+              className="flex flex-col w-[279px] rounded-[15px] gap-[57px] px-[23px] py-[40px] max-w-[279px] border-[1px] border-[#EDA145] hover:bg-[#170045] hover:text-[#FFFFFF] ml-[30px] mb-[41px] pt-[40px] "
             >
               <img src={bulb} width={32} height={32} alt="" />
               <p className="text-[20px] font-[500] leading-[24px]">

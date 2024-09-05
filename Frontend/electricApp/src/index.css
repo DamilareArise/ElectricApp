@@ -204,3 +204,18 @@ a, link, Link{
 .text-animation {
   animation: colorChange 2s infinite;
 }
+
+/* // Expanded(
+                //   child: DropdownButton<String>(
+                //     value: '1st Stage',
+                //     items: ['1st Stage', '2nd Stage', '3rd Stage']
+                //         .map<DropdownMenuItem<String>>((String value) {
+                //       return DropdownMenuItem<String>(
+                //         value: value,
+                //         child: Text(value),
+                //       );
+                //     }).toList(),
+                //     onChanged: (String? newValue) {},
+                //   ),
+                // ),
+                // SizedBox(width: 8), */
