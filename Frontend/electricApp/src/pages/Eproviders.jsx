@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Eproviders = () => {
   let url = "https://api.budpay.com/api/v2/electricity";
