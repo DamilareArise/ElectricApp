@@ -9,10 +9,11 @@ import Dashboard from './pages/Dashboard'
 import Login from './authentication/Login';
 import Transactions from './pages/Transactions';
 import Paybill from './components/Paybill';
+import Eproviders from './pages/Eproviders';
 
 function App() {
   let token = localStorage.token
-  
+  console.log(import.meta.env.VITE_TOKEN)
   return (
     <>
      <Router>
@@ -22,7 +23,8 @@ function App() {
         <Route path='/transactions' element={token ? <Transactions/> : <Navigate to={'/login'}/>}/>
         {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
         <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
-        <Route path='/' element={<Landing/>}/>
+        <Route path='/ff' element={<Landing/>}/>
+        <Route path='/' element={<Eproviders/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>} />
       </Routes>
