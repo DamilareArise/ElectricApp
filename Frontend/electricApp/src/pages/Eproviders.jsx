@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Eproviders = () => {
   let url = "https://api.budpay.com/api/v2/electricity";
@@ -32,10 +32,10 @@ const Eproviders = () => {
   }, []);
 
   const handlePayToggle =(type)=>{
-   
       setPayType(type);
+  }
+
   
-}
 
   return (
     <div className="pt-[85px]">
@@ -57,7 +57,7 @@ const Eproviders = () => {
               {payType === "pay for me" &&
                 (Providers.length > 0
                   ? Providers.map((provider, index) => (
-                      <Link to={'/paybill'}
+                      <Link to={`/paybill/${provider.provider}`}
                         key={index}
                         className="flex items-center justify-between gap-[88px] w-[480px] /h-[120px] rounded-[16px] pl-[33px] pr-[27px] py-[18.5px] mb-[44px] shadow-[#00000040] shadow-md hover:scale-x-[1.1] transition-all hover:bg-[#00000040]"
                       >

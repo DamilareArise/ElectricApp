@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Navbar from './Navbar';
 import message from './../assets/message.svg';
+import { useParams } from 'react-router-dom';
 
 const Paybill = () => {
+  let {provider} = useParams()
+
   const [formType, setFormType] = useState('prepaid');
   const [meterNumber, setMeterNumber] = useState('');
   const [amount, setAmount] = useState('');
@@ -11,6 +14,7 @@ const Paybill = () => {
   const [emailError, setEmailError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false); 
   const [submittedData, setSubmittedData] = useState({}); 
+
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,7 +57,11 @@ const Paybill = () => {
     setIsModalOpen(false);
   };
 
-  
+  const validateProvider = ()=>{
+    console.log(provider, formType, meterNumber, amount);
+    
+  }
+
 
   return (
     <div className="pt-[105px] flex justify-center items-center h-[95vh]">
@@ -153,6 +161,7 @@ const Paybill = () => {
           </div>
 
           <button
+            onClick={validateProvider}
             type="submit"
             className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
           >

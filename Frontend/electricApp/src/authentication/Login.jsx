@@ -11,7 +11,7 @@ const Login = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
-  let navigate = useNavigate();
+  let navigated = useNavigate();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -93,7 +93,7 @@ const Login = () => {
         console.log('Login successful:', data);
         localStorage.token = data.token;
         console.log('I am here');
-        navigate('/dashboard');
+        navigated('/dashboard');
       } else {
         console.log('Login failed:', data);
         setPasswordError('Login failed. Please check your credentials.');
