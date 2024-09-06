@@ -10,6 +10,8 @@ const Paybill = () => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const [amountError, setAmountError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -26,8 +28,8 @@ const Paybill = () => {
   };
 
   const validateProvider = async () => {
-    console.log(provider, formType, meterNumber, amount);
     setLoading(true);
+    setError("");
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -43,11 +45,15 @@ const Paybill = () => {
       });
       const data = await response.json();
       console.log(data);
+      if (!data.success) {
+        throw new Error("Provider validation failed");
+      }
       setName(data.data.Customer_Name);
       setSuccess(data.success);
       return data.success;
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      setError("Error validating provider");
       return false;
     } finally {
       setLoading(false);
@@ -57,7 +63,13 @@ const Paybill = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const isValid = await validateProvider(); 
+    
+    if (amount < 500) {
+      setAmountError("Amount cannot be less than 500");
+      return;
+    }
+
+    const isValid = await validateProvider();
 
     if (isValid) {
       const data = {
@@ -66,7 +78,19 @@ const Paybill = () => {
         amount,
       };
       setSubmittedData(data);
-      setIsModalOpen(true); 
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    setAmount(value);
+
+   
+    if (value < 500) {
+      setAmountError("Amount cannot be less than 500");
+    } else {
+      setAmountError("");
     }
   };
 
@@ -118,56 +142,70 @@ const Paybill = () => {
               placeholder="Amount"
               className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
               value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={handleAmountChange}
               required
             />
           </div>
+
+         
+          {amountError && (
+            <div className="text-red-500 text-sm mb-4">{amountError}</div>
+          )}
 
           <button
             type="submit"
             className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px] hover:opacity-[75%]"
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Proceed'}
+            {loading ? "Loading..." : "Proceed"}
           </button>
         </form>
+
+        
+        {error && (
+          <div className="text-red-500 text-sm mt-4">
+            {error}
+          </div>
+        )}
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-            <h2 className="text-xl font-bold mb-4">Confirm Your Details</h2>
-            <p>
-              <strong>Type:</strong> {submittedData.formType}
-            </p>
-            <p>
-              <strong>
-                {formType === "prepaid" ? "Meter Number" : "Account Number"}:
-              </strong>{" "}
-              {submittedData.meterNumber}
-            </p>
-            <p>
-              <strong>Amount:</strong> {submittedData.amount}
-            </p>
-            <p>
-              <strong>Name:</strong> {name}
-            </p>
-            <div className="mt-4">
-              <button
-                onClick={closeModal}
-                className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px] hover:opacity-[75%]"
-              >
-                Pay
-              </button>
-              <button
-                onClick={closeModal}
-                className="py-2 px-4 bg-gray-500 text-white rounded-lg"
-              >
-                Cancel
-              </button>
+        error ? '' : (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+              <h2 className="text-xl font-bold mb-4">Confirm Your Details</h2>
+              <p>
+                <strong>Type:</strong> {submittedData.formType}
+              </p>
+              <p>
+                <strong>
+                  {formType === "prepaid" ? "Meter Number" : "Account Number"}:
+                </strong>{" "}
+                {submittedData.meterNumber}
+              </p>
+              <p>
+                <strong>Amount:</strong> {submittedData.amount}
+              </p>
+              <p>
+                <strong>Name:</strong> {name}
+              </p>
+              <div className="mt-4">
+                <button
+                  onClick={closeModal}
+                  className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px] hover:opacity-[75%]"
+                >
+                  Pay
+                </button>
+                <button
+                  onClick={closeModal}
+                  className="py-2 px-4 bg-gray-500 text-white rounded-lg"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )
       )}
     </div>
   );
