@@ -1,67 +1,70 @@
-import { useState } from 'react';
-import Navbar from './Navbar';
-import message from './../assets/message.svg';
-import { useParams } from 'react-router-dom';
+import { useState } from "react";
+import Navbar from "./Navbar";
+import { useParams } from "react-router-dom";
 
 const Paybill = () => {
-  let {provider} = useParams()
+  let { provider } = useParams();
 
-  const [formType, setFormType] = useState('prepaid');
-  const [meterNumber, setMeterNumber] = useState('');
-  const [amount, setAmount] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false); 
-  const [submittedData, setSubmittedData] = useState({}); 
+  const [formType, setFormType] = useState("prepaid");
+  const [meterNumber, setMeterNumber] = useState("");
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [submittedData, setSubmittedData] = useState({});
 
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleEmailChange = (e) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-
-    if (!validateEmail(newEmail)) {
-      setEmailError('Invalid email format');
-    } else {
-      setEmailError('');
-    }
-  };
+  let url = "https://api.budpay.com/api/v2/electricity/validate";
+  const bearerToken = "sk_test_xs7qwqzpxa1zscb5zbg2ebm9bmwei3ptc5wvlzw";
 
   const handleFormToggle = (type) => {
     setFormType(type);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    
-    const data = {
-      formType,
-      meterNumber,
-      amount,
-      phoneNumber,
-      email,
-    };
-
-   
-    setSubmittedData(data);
-    setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const validateProvider = ()=>{
+  const validateProvider = async () => {
     console.log(provider, formType, meterNumber, amount);
-    
-  }
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          number: meterNumber,
+          provider: provider,
+          type: formType,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      setName(data.data.Customer_Name);
+      setSuccess(data.success);
+      return data.success;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const isValid = await validateProvider(); 
+
+    if (isValid) {
+      const data = {
+        formType,
+        meterNumber,
+        amount,
+      };
+      setSubmittedData(data);
+      setIsModalOpen(true); 
+    }
+  };
 
   return (
     <div className="pt-[105px] flex justify-center items-center h-[95vh]">
@@ -72,98 +75,51 @@ const Paybill = () => {
           <div className="flex justify-center mb-[62px]">
             <button
               type="button"
-              className={`py-[10px] px-[25px] md:px-[47px] font-[500] text-[18px] md:text-[28px] leading-[33.6px] ${formType === 'prepaid' ? 'bg-[#012436] text-[#EDA145]' : 'border-[1px] border-[#012436'} rounded-[8px]`}
-              onClick={() => handleFormToggle('prepaid')}
+              className={`py-[10px] px-[25px] md:px-[47px] font-[500] text-[18px] md:text-[28px] leading-[33.6px] ${
+                formType === "prepaid"
+                  ? "bg-[#012436] text-[#EDA145]"
+                  : "border-[1px] border-[#012436"
+              } rounded-[8px]`}
+              onClick={() => handleFormToggle("prepaid")}
             >
               Prepaid
             </button>
             <button
               type="button"
-              className={`py-[10px] px-[25px] md:px-[47px] font-[500] text-[18px] md:text-[28px] leading-[33.6px] ${formType === 'postpaid' ? 'bg-[#012436] text-[#EDA145]' : 'border-[1px] border-[#012436'} rounded-[8px]`}
-              onClick={() => handleFormToggle('postpaid')}
+              className={`py-[10px] px-[25px] md:px-[47px] font-[500] text-[18px] md:text-[28px] leading-[33.6px] ${
+                formType === "postpaid"
+                  ? "bg-[#012436] text-[#EDA145]"
+                  : "border-[1px] border-[#012436"
+              } rounded-[8px]`}
+              onClick={() => handleFormToggle("postpaid")}
             >
               Postpaid
             </button>
           </div>
 
-          {formType === 'prepaid' && (
-            <>
-              <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
-                <input
-                  type="number"
-                  placeholder="Meter Number"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
-                  value={meterNumber}
-                  onChange={(e) => setMeterNumber(e.target.value)}
-                />
-              </div>
-
-              <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
-                <input
-                  type="number"
-                  placeholder="Amount"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </div>
-            </>
-          )}
-
-          {formType === 'postpaid' && (
-            <>
-              <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
-                <input
-                  type="number"
-                  placeholder="Account Number"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
-                  value={meterNumber}
-                  onChange={(e) => setMeterNumber(e.target.value)}
-                />
-              </div>
-
-              <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
-                <input
-                  type="number"
-                  placeholder="Amount"
-                  className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </div>
-            </>
-          )}
+          <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
+            <input
+              type="number"
+              placeholder="Meter Number"
+              className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
+              value={meterNumber}
+              onChange={(e) => setMeterNumber(e.target.value)}
+            />
+          </div>
 
           <div className="mb-[23.3px] bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
             <input
               type="number"
-              placeholder="Phone Number"
+              placeholder="Amount"
               className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
             />
           </div>
 
-          <div className="mb-[23.3px]">
-            <div className="flex items-center bg-[#F5F5F5] gap-[17.43px] rounded-[11.62px] px-[25.56px] shadow-md shadow-[#00000040]">
-              <img src={message} alt="Email" width={22.07} height={17.43} />
-              <input
-                type="email"
-                placeholder="Email"
-                className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]  "
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </div>
-            {emailError && (
-              <div className="text-red-500 text-sm">{emailError}</div>
-            )}
-          </div>
-
           <button
-            onClick={validateProvider}
             type="submit"
-            className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
+            className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px] hover:opacity-[75%]"
           >
             Proceed
           </button>
@@ -174,15 +130,25 @@ const Paybill = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
             <h2 className="text-xl font-bold mb-4">Confirm Your Details</h2>
-            <p><strong>Type:</strong> {submittedData.formType}</p>
-            <p><strong>{formType === 'prepaid' ? 'Meter Number' : 'Account Number'}:</strong> {submittedData.meterNumber}</p>
-            <p><strong>Amount:</strong> {submittedData.amount}</p>
-            <p><strong>Phone Number:</strong> {submittedData.phoneNumber}</p>
-            <p><strong>Email:</strong> {submittedData.email}</p>
+            <p>
+              <strong>Type:</strong> {submittedData.formType}
+            </p>
+            <p>
+              <strong>
+                {formType === "prepaid" ? "Meter Number" : "Account Number"}:
+              </strong>{" "}
+              {submittedData.meterNumber}
+            </p>
+            <p>
+              <strong>Amount:</strong> {submittedData.amount}
+            </p>
+            <p>
+              <strong>Name:</strong> {name}
+            </p>
             <div className="mt-4">
               <button
                 onClick={closeModal}
-                className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
+                className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px] hover:opacity-[75%]"
               >
                 Pay
               </button>
