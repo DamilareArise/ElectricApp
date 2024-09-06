@@ -12,6 +12,7 @@ const Paybill = () => {
   const [success, setSuccess] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   let url = "https://api.budpay.com/api/v2/electricity/validate";
   const bearerToken = "sk_test_xs7qwqzpxa1zscb5zbg2ebm9bmwei3ptc5wvlzw";
@@ -26,6 +27,7 @@ const Paybill = () => {
 
   const validateProvider = async () => {
     console.log(provider, formType, meterNumber, amount);
+    setLoading(true);
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -47,6 +49,8 @@ const Paybill = () => {
     } catch (err) {
       console.log(err);
       return false;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,6 +108,7 @@ const Paybill = () => {
               className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
               value={meterNumber}
               onChange={(e) => setMeterNumber(e.target.value)}
+              required
             />
           </div>
 
@@ -114,14 +119,16 @@ const Paybill = () => {
               className="py-[20.91px] bg-[#F5F5F5] border-none outline-none w-full placeholder:md:text-[20px] placeholder:font-[400] placeholder:text-[16px]"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              required
             />
           </div>
 
           <button
             type="submit"
             className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px] hover:opacity-[75%]"
+            disabled={loading}
           >
-            Proceed
+            {loading ? 'Loading...' : 'Proceed'}
           </button>
         </form>
       </div>

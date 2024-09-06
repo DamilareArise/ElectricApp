@@ -16,6 +16,7 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [generalError, setGeneralError] = useState("");
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -84,6 +85,7 @@ const SignUp = () => {
     }
 
     try {
+      setLoading(true)
       const response = await fetch(
         "https://electricapp.onrender.com/account/registration",
         {
@@ -116,6 +118,8 @@ const SignUp = () => {
     } catch (error) {
       console.error("Error:", error);
       setGeneralError("An error occurred. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -227,8 +231,9 @@ const SignUp = () => {
             <button
               type="submit"
               className="py-[22px] bg-[#EDA145] rounded-tl-[20px] rounded-br-[20px] w-full mb-[22px] md:text-[20px] font-[400] text-[16px]  hover:opacity-[75%]"
-            >
-              Sign Up
+              disabled={loading}
+              >
+                {loading ? 'Loading...' : 'Sign up'}
             </button>
 
             {generalError && (
