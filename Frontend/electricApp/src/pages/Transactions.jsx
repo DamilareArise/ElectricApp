@@ -13,8 +13,8 @@ const Transactions = () => {
         <Sidebar />
 
         <div className="flex ">
-          <div className="w-[20%]"></div>
-          <div className="pt-[45] mt-[45px] px-[20px] w-[80%]">
+          <div className="w-[20%] hidden lg:block"></div>
+          <div className="pt-[45] mt-[45px] px-[20px] w-full lg:w-[80%]">
             <div className="bg-[#F8F4F4] px-[20px] border-[1px] border-[#000000] h-[80dvh]">
               <div className="py-[20px] transac-heading border-b-[1px] border-[#DAD9D9] w-full flex items-center text-center">
                 <div className="border-r-[3px] border-[#D9D6D6] w-[5%]">ID</div>
