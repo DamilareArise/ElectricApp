@@ -89,7 +89,7 @@ const Paybill = () => {
           token: token || "", 
           category: formType,
           refrenceId: referenceNumber,
-          status: success.toString(),
+          successful: success,
         }),
       });
       const logData = await response.json();
@@ -132,9 +132,9 @@ const Paybill = () => {
       }
   
     
-      await logTransaction(true, referenceNumber, data.data.token);
+      await logTransaction(data.success, referenceNumber, data.data.token);
   
-      setRechargeSuccess(true);
+      setRechargeSuccess(data.success);
       closeModal();
     } catch (err) {
       setError("Error during recharge");
@@ -260,7 +260,10 @@ const Paybill = () => {
               <strong>Meter Number:</strong> {meterNumber}
             </p>
             <p>
-              <strong>Amount:</strong> {amount}{name}
+              <strong>Amount:</strong> {amount}
+            </p>
+            <p>
+              <strong>Account Name:</strong> {name}
             </p>
 
             <div className="flex justify-between mt-6">
