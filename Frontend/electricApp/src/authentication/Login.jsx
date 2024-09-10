@@ -89,9 +89,9 @@ const Login = ({setToken}) => {
 
       const data = await response.json();
 
-      if (response.ok && data.status) {
-        // console.log('Login successful:', data);
+      if (response.ok && data.status) {        
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userId', data.details._id);
         setToken(data.token);  // Update the token state
         navigate('/dashboard');
       

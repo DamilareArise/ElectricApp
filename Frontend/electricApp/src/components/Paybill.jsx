@@ -82,7 +82,7 @@ const Paybill = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // userId: "USER_ID",
+          userId: localStorage.userId,
           customerName: name,
           meterNo: meterNumber,
           amount: amount,
