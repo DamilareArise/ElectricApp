@@ -8,7 +8,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="w-[20%] bg-[#012436] h-[93vh] pl-[49px] pt-[105px] fixed left-0">
+    <div className="w-[20%] bg-[#012436] h-[93vh] pl-[49px] pt-[105px] fixed left-0 hidden lg:block">
           <div className="flex flex-col gap-[57px]">
             <img src="" alt="" width={24} height={24} />
 

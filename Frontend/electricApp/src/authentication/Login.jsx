@@ -108,10 +108,10 @@ const Login = ({setToken}) => {
   };
 
   return (
-    <div className="bg-[url('./assets/loginImg.jpg')] lg:bg-none bg-cover bg-center h-[100vh] lg:h-fit">
+    <div className="bg-[url('./assets/loginImg.jpg')] lg:bg-none bg-cover bg-center h-[100vh] /lg:h-fit">
       <Navbar />
 
-      <div className="flex items-center justify-center lg:justify-between h-full lg:h-fit gap-[104px] px-[24px] lg:pl-[57px] lg:pr-[57px] mt-[50px] mb-[58px] pt-[70px]">
+      <div className="flex items-center justify-center lg:justify-between h-full /lg:h-fit gap-[104px] px-[24px] lg:pl-[57px] lg:pr-[57px] mt-[50px] mb-[58px] pt-[70px]">
         <img src={loginImg} alt="Login" width={323} height={323} className="w-[40%] hidden lg:block" />
         <div className="md:w-[70%] lg:w-[50%] pt-[32px] pb-[32px] bg-[#FFFEFE] shadow-md shadow-[#00000040] px-[26px] rounded-[30px]">
           <form onSubmit={handleSubmit}>
