@@ -2,8 +2,10 @@ const express = require('express')
 const transactionModel = require('../models/transaction.model')
 
 
+
 const allTransaction = (req, res) => {
-    transactionModel.find({})
+    let id = req.params.id
+    transactionModel.findOne({userId:id})
     .then((data) => {
         res.send({transactions:data, status:true})
     })
