@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 5000
 const userRouter = require('./routes/user.route')
+const transactionRouter = require('./routes/transaction.route')
 const mongoose = require("mongoose")
 require('dotenv').config()
 const cors = require("cors")
@@ -20,6 +21,7 @@ mongoose.connect(URI)
 })
 
 app.use('/account', userRouter)
+app.use('/transaction', transactionRouter)
 
 app.get('/', (req,res) =>{
     res.send('Hello World')
