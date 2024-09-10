@@ -16,7 +16,7 @@ const allTransaction = (req, res) => {
 }
 
 const logTransaction  = (req, res) =>{
-    const {userId, customerName, meterNo, amount, token, category, refrenceId} = req.body
+    const {userId, customerName, meterNo, amount, token, category,successful, refrenceId} = req.body
     const transaction = new transactionModel({
         userId:userId,
         customerName:customerName,
@@ -24,6 +24,7 @@ const logTransaction  = (req, res) =>{
         amount:amount,
         token:token,
         category:category,
+        successful:successful,
         refrenceId:refrenceId
     })
     transaction.save()

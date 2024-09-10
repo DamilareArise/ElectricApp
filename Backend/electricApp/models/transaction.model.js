@@ -7,6 +7,7 @@ const transactionSchema = mongoose.Schema({
     amount: {type: Number, require: true},
     token: {type: String},
     category: {type: String, require: true},
+    successful: {type: Boolean},
     refrenceId: {type: String, require: true},
     date: { type: Date, default: Date.now }
 })
