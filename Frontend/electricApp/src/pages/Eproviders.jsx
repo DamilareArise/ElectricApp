@@ -44,8 +44,8 @@ const Eproviders = () => {
         <Sidebar />
 
         <div className="flex">
-          <div className="w-[20%]"></div>
-          <div className="px-[32px] flex flex-col gap-[24px] w-[80%]">
+          <div className="w-[20%] hidden lg:block"></div>
+          <div className="px-[32px] flex flex-col gap-[24px] w-full lg:w-[80%]">
             <div className="flex justify-center mt-[94px]">
               <button onClick={()=>handlePayToggle('pay for me')} className={`py-[10px] px-[25px] md:px-[47px] font-[500] text-[18px] md:text-[28px] leading-[33.6px] ${payType === 'pay for me' ? 'bg-[#012436] text-[#EDA145]' : 'border-[1px] border-[#012436'} rounded-[8px]`}>pay for me</button>
               <button onClick={()=>handlePayToggle('pay for others')} className={`py-[10px] px-[25px] md:px-[47px] font-[500] text-[18px] md:text-[28px] leading-[33.6px] ${payType === 'pay for others' ? 'bg-[#012436] text-[#EDA145]' : 'border-[1px] border-[#012436'} rounded-[8px]`}>pay for others</button>
