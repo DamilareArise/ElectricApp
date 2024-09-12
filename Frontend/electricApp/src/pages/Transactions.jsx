@@ -15,8 +15,8 @@ const Transactions = () => {
         <div className="flex">
           <div className="w-[20%] hidden lg:block"></div>
           <div className="pt-[45] mt-[45px] px-[20px] w-full lg:w-[80%]">
-            <div className="bg-[#F8F4F4] px-[20px] border-[1px] border-[#000000] h-[80dvh]">
-              <table className="w-full">
+            <div className="bg-[#F8F4F4] px-[20px] border-[1px] border-[#000000] h-[80dvh] overflow-x-auto ">
+              <table className="md:w-full w-[600px]">
                 <thead>
                   <tr className="py-[20px] transac-heading border-b-[1px] border-[#DAD9D9]">
                     <th className="border-r-[3px] border-[#D9D6D6] w-[5%]">ID</th>
