@@ -53,12 +53,13 @@ const Transactions = () => {
                 <thead>
                   <tr className="py-[20px] transac-heading border-b-[1px] border-[#DAD9D9]">
                     <th className="border-r-[3px] border-[#D9D6D6] w-[5%]">ID</th>
+                    <th className="border-r-[3px] border-[#D9D6D6] w-[5%]">Status</th>
                     <th className="border-r-[3px] border-[#D9D6D6] w-[20%]">Category</th>
                     <th className="border-r-[3px] border-[#D9D6D6] w-[10%]">Amount</th>
                     <th className="border-r-[3px] border-[#D9D6D6] w-[15%]">Token</th>
+                    <th className="border-r-[3px] border-[#D9D6D6] w-[15%]">Customer Name</th>
                     <th className="border-r-[3px] border-[#D9D6D6] w-[20%]">Meter no.</th>
-                    <th className="border-r-[3px] border-[#D9D6D6] w-[15%]">Date</th>
-                    <th className="w-[15%]">Phone number</th>
+                    <th className="w-[15%]">Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -74,13 +75,19 @@ const Transactions = () => {
                   ) : (
                     transac.map((transaction, index) => (
                       <tr key={index}>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.id}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6]">{index+1}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6]">
+
+                          {transaction.successful? <span>Successful</span> : <span>Failed</span>}
+                          
+                        </td>
                         <td className="border-r-[3px] border-[#D9D6D6]">{transaction.category}</td>
                         <td className="border-r-[3px] border-[#D9D6D6]">{transaction.amount}</td>
                         <td className="border-r-[3px] border-[#D9D6D6]">{transaction.token}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.customerName}</td>
                         <td className="border-r-[3px] border-[#D9D6D6]">{transaction.meterNo}</td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.date}</td>
-                        <td>{transaction.phoneNumber}</td>
+                        <td>{new Date(transaction.date).toLocaleString()}</td>
+                        
                       </tr>
                     ))
                   )}
