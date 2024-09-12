@@ -5,7 +5,7 @@ const transactionModel = require('../models/transaction.model')
 
 const allTransaction = (req, res) => {
     let id = req.params.id
-    transactionModel.findOne({userId:id})
+    transactionModel.find({userId:id})
     .then((data) => {
         res.send({transactions:data, status:true})
     })

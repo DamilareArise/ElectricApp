@@ -34,9 +34,8 @@ function App() {
      <Router>
       
       <Routes>
-      <Route path='/paybill/:provider' element={token ? <Paybill/>: <Navigate to={'/login'}/>}/>
+        <Route path='/paybill/:provider' element={token ? <Paybill/>: <Navigate to={'/login'}/>}/>
         <Route path='/transactions' element={token ? <Transactions/> : <Navigate to={'/login'}/>}/>
-        {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
         <Route path='/dashboard' element={token ? <Dashboard/> : <Navigate to={'/login'}/>}/>
         <Route path='/' element={<Landing/>}/>
         <Route path='/providers' element={token? <Eproviders/>: <Navigate to={'/login'}/>}/>

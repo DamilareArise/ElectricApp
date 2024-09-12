@@ -1,11 +1,44 @@
 // import React from 'react'
 
+
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import nulltransac from "./../assets/nulltransac.gif";
 
 const Transactions = () => {
-  let transac = [];
+  const [transac, setTransac] = useState([]);
+  const userId = localStorage.userId
+  let url =`https://electricapp.onrender.com/transaction/all-transaction/${userId}` 
+  const bearerToken = "sk_test_xs7qwqzpxa1zscb5zbg2ebm9bmwei3ptc5wvlzw";
+
+  useEffect(()=>{
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        "Content-Type": "application/json",
+      },
+  
+    }
+    )
+    .then((res)=>{
+      if(res.status==200){
+        res.json()
+        .then((res)=>{
+          // console.log(res)
+          setTransac(res.transactions)
+        })
+      }
+    })
+    
+    .catch((err)=>{
+      console.error(err)})
+  }, [userId])
+
+  console.log(transac);
+  
+
   return (
     <div className="pt-[85px]">
       <Navbar />
