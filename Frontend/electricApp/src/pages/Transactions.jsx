@@ -75,17 +75,17 @@ const Transactions = () => {
                   ) : (
                     transac.map((transaction, index) => (
                       <tr key={index}>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{index+1}</td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">{index+1}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">
 
-                          {transaction.successful? <span>Successful</span> : <span>Failed</span>}
+                          {transaction.successful? <span className="text-green-700 text-[16px] text-center">Successful</span> : <span className="text-red-500 text-[16px] text-center">Failed</span>}
                           
                         </td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.category}</td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.amount}</td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.token}</td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.customerName}</td>
-                        <td className="border-r-[3px] border-[#D9D6D6]">{transaction.meterNo}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">{transaction.category}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">{transaction.amount}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">{transaction.token ? transaction.token : '---'}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">{transaction.customerName}</td>
+                        <td className="border-r-[3px] border-[#D9D6D6] text-center">{transaction.meterNo}</td>
                         <td>{new Date(transaction.date).toLocaleString()}</td>
                         
                       </tr>

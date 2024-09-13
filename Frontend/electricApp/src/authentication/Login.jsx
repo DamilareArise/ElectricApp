@@ -92,6 +92,8 @@ const Login = ({setToken}) => {
       if (response.ok && data.status) {        
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.details._id);
+        console.log(data)
+        localStorage.setItem('firstname', data.details.firstName);
         setToken(data.token);  // Update the token state
         navigate('/dashboard');
       

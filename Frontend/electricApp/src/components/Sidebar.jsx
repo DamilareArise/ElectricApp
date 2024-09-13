@@ -3,14 +3,17 @@ import { Link } from "react-router-dom"
 
 const Sidebar = () => {
   const logoutUser = () =>{
-    localStorage.removeItem('token')
+    // localStorage.removeItem('token')
+    localStorage.clear()
     window.location.reload()
   }
+  let firstName = localStorage.firstname;
 
   return (
     <div className="w-[20%] bg-[#012436] h-[93vh] pl-[49px] pt-[105px] fixed left-0 hidden lg:block">
           <div className="flex flex-col gap-[57px]">
-            <img src="" alt="" width={24} height={24} />
+          <Link to={'/'}><i className="fa-solid fa-arrow-left text-[#EDA145]"></i></Link>
+            <p className="text-[16px] text-[#EDA145]">Welcome, {firstName}</p>
 
             <div className="flex flex-col gap-[35px]">
               <Link
