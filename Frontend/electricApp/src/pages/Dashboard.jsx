@@ -8,7 +8,7 @@ import Sidebar from "../components/Sidebar";
 const Dashboard = () => {
   const [notifications, setNotification] = useState("")
 
-
+  let firstName = localStorage.firstname;
   useEffect(() => {
     getDashboard();
   }, []);
@@ -52,6 +52,7 @@ const Dashboard = () => {
           <div className="w-[20%] hidden lg:block"></div>
 
           <div className=" mt-[41px] w-full lg:w-[80%]">
+            <p className="text-[20px] text-[#170045] font-[500] ml-[30px] pb-[16px] lg:hidden block">Welcome, {firstName}</p>
             <Link
               to="/providers"
               className="flex flex-col w-[279px] rounded-[15px] gap-[57px] px-[23px] py-[40px] max-w-[279px] border-[1px] border-[#EDA145] hover:bg-[#170045] hover:text-[#FFFFFF] ml-[30px] mb-[41px] pt-[40px] "
