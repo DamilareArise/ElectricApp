@@ -20,32 +20,42 @@ const Sidebar = () => {
                 to="/"
                 className="font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center"
               >
-                <img src="" alt="" />
-                <p>Home</p>
+              
+                <span className="flex gap-[28px] items-center side">
+                  <i className="fa-solid fa-house text-[#EDA145]"></i>
+                  <p>Home</p>
+                  
+                </span>
               </Link>
 
               <Link
                 to="/dashboard"
                 className="font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center"
               >
-                <img src="" alt="" />
-                <p>Dashboard</p>
+               <span className="flex gap-[28px] items-center side">
+               <i className="fa-solid fa-border-none text-[#EDA145]"></i>
+               <p>Dashboard</p>
+               </span>
               </Link>
 
               <Link
                 to="/transactions"
                 className="font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center"
               >
-                <img src="" alt="" />
+                <span className="flex gap-[28px] items-center side">
+                <i className="fa-solid fa-money-bill-transfer text-[#EDA145] fa-flip"></i>
                 <p>Transactions</p>
+                </span>
               </Link>
 
               <Link
                 to=""
                 className="font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center"
               >
-                <img src="" alt="" />
-                <p>Settings</p>
+               <span className="flex gap-[28px] items-center side">
+               <i className="fa-solid fa-gear text-[#EDA145] "></i>
+               <p>Settings</p>
+               </span>
               </Link>
 
               <Link
@@ -53,8 +63,10 @@ const Sidebar = () => {
                 onClick={logoutUser}
                 className="font-[500] text-[20px] leading-[24px] text-[#EDA145] flex gap-[23px] items-center"
               >
-                <img src="" alt="" />
+                <span className="flex gap-[28px] items-center side ">
+                <i className="fa-solid fa-right-from-bracket text-[#EDA145] fa-shake"></i>
                 <p>Logout</p>
+                </span>
               </Link>
             </div>
           </div>
