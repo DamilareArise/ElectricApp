@@ -18,8 +18,8 @@ const registration = (req, res) => {
         }
       });
       let mailOptions = {
-        from: 'arisedamilare5@gmail.com',
-        to: [data.email, 'arisedamilare5@gmail.com'],
+        from: 'electricbytpw@gmail.com',
+        to: [data.email, 'electricbytpw@gmail.com'],
         subject: 'Welcome to ElectricityApp!',
         html: mailHTML.replace('[User\'s Name]', data.firstName)
       };
