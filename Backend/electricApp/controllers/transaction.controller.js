@@ -2,6 +2,7 @@ const express = require('express')
 const transactionModel = require('../models/transaction.model')
 const successmail = require('../successmail')
 const failedmail = require('../failedmail')
+const nodemailer = require("nodemailer");
 
 
 
