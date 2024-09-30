@@ -73,7 +73,7 @@ const Paybill = () => {
 
   // Log transaction
   const logTransaction = async (success, referenceNumber, token) => {
-    const logUrl = "http://localhost:5000//transaction/log-transaction";
+    const logUrl = "https://electricapp.onrender.com/transaction/log-transaction";
 
     try {
       const response = await fetch(logUrl, {
