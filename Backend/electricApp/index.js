@@ -16,8 +16,8 @@ mongoose.connect(URI)
 .then(()=>{
     console.log('mongoDB connected')
 })
-.catch(()=>{
-    console.log('mongoDB connection failed')
+.catch((err)=>{
+    console.log('mongoDB connection failed: ', err)
 })
 
 app.use('/account', userRouter)
