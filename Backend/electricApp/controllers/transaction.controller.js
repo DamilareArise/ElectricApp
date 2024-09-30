@@ -3,6 +3,7 @@ const transactionModel = require('../models/transaction.model')
 const successmail = require('../successmail')
 const failedmail = require('../failedmail')
 const nodemailer = require("nodemailer");
+const userRegModel = require('../models/user.model')
 
 
 
@@ -20,7 +21,7 @@ const allTransaction = (req, res) => {
 
 const logTransaction = (req, res) => {
     const { userId, customerName, meterNo, amount, token, category, successful, refrenceId } = req.body;
-    
+    let email = ''
     const transaction = new transactionModel({
         userId: userId,
         customerName: customerName,
@@ -32,9 +33,19 @@ const logTransaction = (req, res) => {
         refrenceId: refrenceId
     });
     
+    userRegModel.find({_id:userId})
+    .then((data) => {
+        email = data[0].email
+        console.log(email);
+        
+    })
+    .catch((err) => {
+        console.log('Error: ',err);
+    })
+
+
     transaction.save()
     .then((data) => {
-        console.log(data);
         
         // Prepare nodemailer configuration
         const transporter = nodemailer.createTransport({
@@ -52,7 +63,7 @@ const logTransaction = (req, res) => {
             
             let mailOptions = {
                 from: 'electricbytpw@gmail.com',
-                to: [data.email, 'electricbytpw@gmail.com'],
+                to: [email, 'electricbytpw@gmail.com'],
                 subject: 'Transaction Successful',
                 html: successMailHTML
             };
@@ -71,7 +82,7 @@ const logTransaction = (req, res) => {
 
             let mailOptions = {
                 from: 'electricbytpw@gmail.com',
-                to: [data.email, 'electricbytpw@gmail.com'],
+                to: [email, 'electricbytpw@gmail.com'],
                 subject: 'Transaction Failed',
                 html: failedMailHTML
             };
