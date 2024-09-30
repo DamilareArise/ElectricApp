@@ -76,7 +76,7 @@ const Login = ({setToken}) => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://electricapp.onrender.com/account/signin`, {
+      const response = await fetch(`http://localhost:5000//account/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
