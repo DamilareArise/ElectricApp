@@ -34,6 +34,8 @@ const logTransaction = (req, res) => {
     
     transaction.save()
     .then((data) => {
+        console.log(data);
+        
         // Prepare nodemailer configuration
         const transporter = nodemailer.createTransport({
             service: 'gmail',
