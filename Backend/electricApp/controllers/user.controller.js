@@ -3,6 +3,7 @@ const userRegModel = require('../models/user.model')
 const nodemailer = require("nodemailer");
 const mailHTML = require('../mail');
 const jwt = require('jsonwebtoken')
+const resetPasswordMailHTML = require('../resetPassword')
 
 
 const registration = (req, res) => {
@@ -89,8 +90,9 @@ const forgotPassword = (req, res) => {
   const { email } = req.body;
 
   try {
-    User.findOne({ email })
+    userRegModel.findOne({ email })
       .then((data) => {
+
         if (!data) {
           res.send({ status: false, message: 'User not found' })
         }
@@ -103,13 +105,18 @@ const forgotPassword = (req, res) => {
               pass: process.env.GMAIL_PASSWORD
             }
           });
+
+          let resetLink = `https://electric-app-seven.vercel.app/reset-password/${token}`
+          let resetMailHTML = resetPasswordMailHTML
+          .replace('[User\'s Name]', data.firstName)
+          .replace('[Reset Link]', resetLink);
+
           const mailOptions = {
             from: 'electricbytpw@gmail.com',
             to: data.email,
             subject: 'Reset Password',
-            text: `Your reset password token is ${token}.\n\nPlease click on the following
-            link to reset your password: https://electric-app-seven.vercel.app/reset-password/${token}`
-          };
+            html: resetMailHTML
+          }; 
           transport.sendMail(mailOptions, (error, info) => {
             if (error) {
               return res.send({ status: false, message: error.message })
@@ -123,7 +130,7 @@ const forgotPassword = (req, res) => {
       })
   }
   catch (err) {
-    res.send({ status: false, message: err.message })
+    res.send({ status: false, message: 'err.message2' })
   }
 }
 
@@ -137,7 +144,7 @@ const resetPasswordWithToken = (req, res) => {
     const userId = decoded.userId;
 
     // Find the user by the userId in the token
-    User.findById(userId)
+    userRegModel.findById(userId)
       .then((user) => {
         if (!user) {
           return res.send({ status: false, message: 'Invalid or expired token' });
