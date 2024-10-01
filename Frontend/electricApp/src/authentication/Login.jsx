@@ -151,9 +151,9 @@ const Login = ({setToken}) => {
               {loading ? 'Loading...' : 'Login'}
             </button>
 
-            <a href="#" className="w-full">
+            <Link to={'/forgot'} className="w-full">
               <p className="text-right md:text-[20px] font-[400] text-[16px]">Forget password?</p>
-            </a>
+            </Link>
 
             <div className="text-center mt-[32px]">
               <p className="md:text-[20px] font-[400] text-[16px]">
