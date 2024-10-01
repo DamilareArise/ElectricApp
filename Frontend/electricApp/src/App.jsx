@@ -11,6 +11,8 @@ import Transactions from './pages/Transactions';
 import Paybill from './components/Paybill';
 import Eproviders from './pages/Eproviders';
 import { useEffect, useState } from 'react';
+import ForgotPassword from './authentication/ForgotPassword';
+import ResetPassword from './authentication/ResetPassword';
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
         <Route path='/providers' element={token? <Eproviders/>: <Navigate to={'/login'}/>}/>
         <Route path="/login" element={<Login setToken={setToken}/>}/>
         <Route path="/signup" element={<SignUp/>} />
+        <Route path="/forgot" element={<ForgotPassword/>} />
+        <Route path="/reset-password/:token" element={<ResetPassword/>} />
       </Routes>
   
     </Router>
