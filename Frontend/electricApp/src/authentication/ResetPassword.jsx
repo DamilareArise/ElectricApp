@@ -96,13 +96,15 @@ const ResetPassword = () => {
         })
         .then((data) => {
         console.log(data); // Handle the response data
+        setLoading(false);
         alert('Password has been reset successfully! proceed to login');
         })
         .catch((err) => {
         console.log(err); // Handle any errors
+        setLoading(false);
         alert('Password has reset failed!');
         });
-        setLoading(false);
+        
 
   }
 

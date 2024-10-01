@@ -43,13 +43,16 @@ const ForgotPassword = () => {
       })
       .then((data) => {
         console.log(data); // Handle the response data
+        setLoading(false);
         alert('Password reset link has been sent to your email!');
+        
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err); // Handle any errors
         alert('Error occured, try again.');
       });
-      setLoading(false);
+      
   };
   
 
