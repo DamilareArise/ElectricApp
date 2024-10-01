@@ -83,4 +83,85 @@ const getDashboard = (req, res) => {
   })
 }
 
-module.exports = { registration, authenticateUser, getDashboard }
+
+
+const forgotPassword = (req, res) => {
+  const { email } = req.body;
+
+  try {
+    User.findOne({ email })
+      .then((data) => {
+        if (!data) {
+          res.send({ status: false, message: 'User not found' })
+        }
+        else {
+          const token = jwt.sign({ userId: data._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+          let transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.GMAIL_USERNAME,
+              pass: process.env.GMAIL_PASSWORD
+            }
+          });
+          const mailOptions = {
+            from: 'electricbytpw@gmail.com',
+            to: data.email,
+            subject: 'Reset Password',
+            text: `Your reset password token is ${token}.\n\nPlease click on the following
+            link to reset your password: https://electric-app-seven.vercel.app/reset-password/${token}`
+          };
+          transport.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              return res.send({ status: false, message: error.message })
+            }
+            res.send({ status: true, message: 'Password reset link sent to your email', token })
+          })
+        }
+      })
+      .catch((err) => {
+        res.send({ status: false, message: err.message })
+      })
+  }
+  catch (err) {
+    res.send({ status: false, message: err.message })
+  }
+}
+
+
+const resetPasswordWithToken = (req, res) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const userId = decoded.userId;
+
+    // Find the user by the userId in the token
+    User.findById(userId)
+      .then((user) => {
+        if (!user) {
+          return res.send({ status: false, message: 'Invalid or expired token' });
+        }
+        // Update the user's password
+        user.password = newPassword;
+        user.save()
+          .then(() => {
+            res.send({ status: true, message: 'Password updated successfully' })
+          })
+          .catch((err) => {
+            res.send({ status: false, message: err.message })
+          })
+      })
+      .catch((err) => {
+        res.send({ status: false, message: err.message })
+      })
+  }
+  catch (err) {
+    res.send({ status: false, message: 'Invalid or expired token' })
+  }
+}
+
+
+
+
+module.exports = { registration, authenticateUser, getDashboard, forgotPassword, resetPasswordWithToken }
