@@ -79,7 +79,6 @@ const ResetPassword = () => {
     // Simulate an async operation (e.g., sending a password reset request)
     setTimeout(() => {
       setLoading(false);
-      alert('Password has been reset successfully!');
     }, 2000);
   };
 
@@ -98,12 +97,15 @@ const ResetPassword = () => {
     })
         .then((response) => {
         return response.json(); // Ensure this returns a promise
+        
         })
         .then((data) => {
         console.log(data); // Handle the response data
+        alert('Password has been reset successfully! proceed to login');
         })
         .catch((err) => {
         console.log(err); // Handle any errors
+        alert('Password has reset failed!');
         });
 
   }

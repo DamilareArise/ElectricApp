@@ -43,6 +43,7 @@ const ForgotPassword = () => {
       })
       .then((data) => {
         console.log(data); // Handle the response data
+        alert('Password reset link has been sent to your email!');
       })
       .catch((err) => {
         console.log(err); // Handle any errors
@@ -76,7 +77,7 @@ const ForgotPassword = () => {
     // Simulate an async operation, such as sending a password reset email
     setTimeout(() => {
       setLoading(false);
-      alert('Password reset link has been sent to your email!');
+      
     }, 2000);
   };
 
