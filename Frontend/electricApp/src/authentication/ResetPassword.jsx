@@ -75,11 +75,6 @@ const ResetPassword = () => {
     }
 
     setLoading(true);
-
-    // Simulate an async operation (e.g., sending a password reset request)
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
   };
 
 
@@ -107,6 +102,7 @@ const ResetPassword = () => {
         console.log(err); // Handle any errors
         alert('Password has reset failed!');
         });
+        setLoading(false);
 
   }
 

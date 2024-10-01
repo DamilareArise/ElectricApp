@@ -47,7 +47,9 @@ const ForgotPassword = () => {
       })
       .catch((err) => {
         console.log(err); // Handle any errors
+        alert('Error occured, try again.');
       });
+      setLoading(false);
   };
   
 
@@ -73,12 +75,6 @@ const ForgotPassword = () => {
     }
 
     setLoading(true);
-
-    // Simulate an async operation, such as sending a password reset email
-    setTimeout(() => {
-      setLoading(false);
-      
-    }, 2000);
   };
 
   return (
