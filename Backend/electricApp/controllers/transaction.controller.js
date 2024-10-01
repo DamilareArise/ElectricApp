@@ -22,6 +22,7 @@ const allTransaction = (req, res) => {
 const logTransaction = (req, res) => {
     const { userId, customerName, meterNo, amount, token, category, successful, refrenceId } = req.body;
     let email = ''
+    let firstname = ''
     const transaction = new transactionModel({
         userId: userId,
         customerName: customerName,
@@ -36,6 +37,7 @@ const logTransaction = (req, res) => {
     userRegModel.find({_id:userId})
     .then((data) => {
         email = data[0].email
+        firstname = data[0].firstName
         console.log(email);
         
     })
@@ -58,7 +60,7 @@ const logTransaction = (req, res) => {
         
         // If the transaction is successful, send a success email
         if (successful === true) {
-            let successMailHTML = successmail.replace('[User\'s Name]', data.customerName)
+            let successMailHTML = successmail.replace('[User\'s Name]', firstname)
                                              .replace('[Electric Token]', token); // Assuming 'token' is the electric token
             
             let mailOptions = {
