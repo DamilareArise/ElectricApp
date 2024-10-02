@@ -1,6 +1,6 @@
 // import Header from "./components/Header"
 // import Nav from "./components/nav"
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {Route, Routes, Navigate } from 'react-router-dom';
 
 // import Login from "./authentication/Login"
 import SignUp from './authentication/SignUp';
@@ -33,8 +33,6 @@ function App() {
   }, []);
   return (
     <>
-     <Router>
-      
       <Routes>
         <Route path='/paybill/:provider' element={token ? <Paybill/>: <Navigate to={'/login'}/>}/>
         <Route path='/transactions' element={token ? <Transactions/> : <Navigate to={'/login'}/>}/>
@@ -46,8 +44,6 @@ function App() {
         <Route path="/forgot" element={<ForgotPassword/>} />
         <Route path="/reset-password/:token" element={<ResetPassword/>} />
       </Routes>
-  
-    </Router>
     </>
   )
 }
