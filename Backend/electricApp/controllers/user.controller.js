@@ -19,8 +19,8 @@ const registration = (req, res) => {
         }
       });
       let mailOptions = {
-        from: 'electricbytpw@gmail.com',
-        to: [data.email, 'electricbytpw@gmail.com'],
+        from: process.env.GMAIL_USERNAME,
+        to: [data.email, process.env.GMAIL_USERNAME],
         subject: 'Welcome to ElectricityApp!',
         html: mailHTML.replace('[User\'s Name]', data.firstName)
       };
@@ -112,7 +112,7 @@ const forgotPassword = (req, res) => {
           .replace('[Reset Link]', resetLink);
 
           const mailOptions = {
-            from: 'electricbytpw@gmail.com',
+            from: process.env.GMAIL_USERNAME,
             to: data.email,
             subject: 'Reset Password',
             html: resetMailHTML

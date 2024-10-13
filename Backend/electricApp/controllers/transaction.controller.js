@@ -64,8 +64,8 @@ const logTransaction = (req, res) => {
                                              .replace('[Electric Token]', token); // Assuming 'token' is the electric token
             
             let mailOptions = {
-                from: 'electricbytpw@gmail.com',
-                to: [email, 'electricbytpw@gmail.com'],
+                from: process.env.GMAIL_USERNAME,
+                to: [email, process.env.GMAIL_USERNAME],
                 subject: 'Transaction Successful',
                 html: successMailHTML
             };
@@ -83,8 +83,8 @@ const logTransaction = (req, res) => {
             let failedMailHTML = failedmail.replace('[User\'s Name]', data.customerName);
 
             let mailOptions = {
-                from: 'electricbytpw@gmail.com',
-                to: [email, 'electricbytpw@gmail.com'],
+                from: process.env.GMAIL_USERNAME,
+                to: [email, process.env.GMAIL_USERNAME],
                 subject: 'Transaction Failed',
                 html: failedMailHTML
             };
