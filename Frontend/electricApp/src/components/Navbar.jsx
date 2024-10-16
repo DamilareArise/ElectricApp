@@ -20,6 +20,8 @@ const Navbar = () => {
     window.location.reload()
   }
 
+  let token = localStorage.token
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -50,16 +52,18 @@ const Navbar = () => {
               Settings
             </Link>
 
-            <Link
-                to=""
-                onClick={logoutUser}
-                className="font-[500] /text-[20px] /leading-[24px] text-[#170045] /flex /gap-[10px] items-center lg:hidden mb-[20px]"
-              >
-                <span className="flex gap-[12px] items-center /side ">
-                <i className="fa-solid fa-right-from-bracket text-[#170045] fa-shake"></i>
-                <p>Logout</p>
-                </span>
-              </Link>
+           {
+            token ?  <Link
+            to=""
+            onClick={logoutUser}
+            className="font-[500] /text-[20px] /leading-[24px] text-[#170045] /flex /gap-[10px] items-center lg:hidden mb-[20px]"
+          >
+            <span className="flex gap-[12px] items-center /side ">
+            <i className="fa-solid fa-right-from-bracket text-[#170045] fa-shake"></i>
+            <p>Logout</p>
+            </span>
+          </Link>: null
+           }
           </span>
 
           <Link
